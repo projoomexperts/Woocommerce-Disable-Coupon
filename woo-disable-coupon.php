@@ -9,7 +9,6 @@
  * Text Domain: woo-disable-coupon
  * WC requires at least: 3.0
  * WC tested up to: 5.0.0
- *
  */
 
 
@@ -60,7 +59,7 @@ function wdc_save_coupon_field( $user_id ) {
 add_action( 'admin_menu', 'wdc_add_admin_menu' );
 add_action( 'admin_init', 'wdc_settings_init' );
 function wdc_add_admin_menu(  ) { 
-	add_submenu_page( 'woocommerce', 'Woo Disable Coupon', 'Woo Disable Coupon', 'manage_options', 'woocommerce_disable_coupon', 'wdc_options_page' );
+	add_submenu_page( 'woocommerce', 'Woo Disable Coupon', 'Woo Disable Coupon', 'manage_options', 'woocommerce_disable_coupon', 'wdc_options_page' , 50 );
 }
 
 function wdc_settings_init(  ) { 
@@ -104,16 +103,16 @@ function wdc_settings_section_callback(  ) {
 
 
 function wdc_options_page(  ) { 
-		?>
-		<form action='options.php' method='post'>
-			<h2>Woocommerce Disable Coupon</h2>
-			<?php
+	?>
+	<form action='options.php' method='post'>
+		<h2>Woocommerce Disable Coupon</h2>
+		<?php
 			settings_fields( 'pluginPage' );
 			do_settings_sections( 'pluginPage' );
 			submit_button();
-			?>
-		</form>
-		<?php
+		?>
+	</form>
+	<?php
 }
 
 
@@ -141,4 +140,3 @@ function wdc_hide_coupon_field_on_woocommerce_cart( $enabled ) {
 	return $enabled;
 }
 add_filter( 'woocommerce_coupons_enabled', 'wdc_hide_coupon_field_on_woocommerce_cart' );
-
